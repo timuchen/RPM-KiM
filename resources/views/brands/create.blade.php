@@ -37,7 +37,6 @@
                                 <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
                                 @endforeach
                             </select>
-                       
                         </div>
                         <div class="form-group">
                             <label for="name">Название:</label>

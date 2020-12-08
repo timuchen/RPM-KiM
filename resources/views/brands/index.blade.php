@@ -38,8 +38,13 @@
                                     <td>{{$brand->id}}</td>
                                     <td>{{$brand->name}} {{$brand->last_name}}</td>
                                     <td>{{$brand->description}}</td>
-                                    <td>{{$brand->sity}}</td>
-                                    <td>{{$brand->adress}}</td>
+                                    <td>
+                                        @if ($brand->manufacturer->name)
+                                        {{$brand->manufacturer->name}}
+                                        @else
+                                        {{$brand->manufacturer_id}}
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('brands.edit',$brand->id)}}" class="btn btn-primary">Ред.</a>
                                     </td>

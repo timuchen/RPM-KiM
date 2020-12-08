@@ -20,10 +20,12 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        return view('brands.index', compact('brands'));
+        //$brands = Brand::all();
+        $brands = Brand::with('manufacturer')->get();
+        $manufacturers = Manufacturer::all();
+              
+        return view('brands.index', ['brands'=> $brands, 'manufacturers' => $manufacturers,]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -37,15 +39,17 @@ class BrandController extends Controller
             'name' => $request->get('name'),
             'description' => $request->get('description'),
             'manufacturer_id' => $request->get('manufacturer_id'),
-            'brand_id' => $request->get('brand_id'),
         ]);
         
         $brand->save();
         return redirect('/brands')->with('success', 'Brand saved!');
     }
+    
+
     public function create()
     {
-        return view('brands.create');
+        $manufacturers = Manufacturer::all();
+        return view('brands.create', ['manufacturers' => $manufacturers]);
     }
 
     /**
@@ -58,7 +62,8 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = Brand::find($id);
-        return view('brands.edit', compact('brand'));
+        $manufacturers = Manufacturer::all();
+        return view('brands.edit', ['brand' => $brand, 'manufacturers' => $manufacturers]);
     }
 
     /**
@@ -73,6 +78,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'name'=>'required',
+            'manufacturer_id' => 'required'
         ]);
         $brand = Brand::find($id);
         $brand->name = $request->get('name');
@@ -93,7 +99,6 @@ class BrandController extends Controller
       $brand = Brand::find($id);
       $brand->delete();
 
-
-      return response()->json('Brand Deleted Successfully.');
+      return redirect('/brands')->with('success', 'Brand Deleted Successfully.');
     }
 }

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
 
-                    {{ __('Мониторинг: конфигурация') }}
+                    {{ __('Мониторинг цен') }}
 
                 </div>
 
@@ -33,27 +33,27 @@
                             <label for="sity">Производитель:</label>
                             <select type="text" class="form-control" name="manufacturer_id"/>
                                 <option disabled selected>Выберите производителя</option>
-                                {{-- @foreach($manufacturers as $manufacturer)
+                                @foreach($manufacturers as $manufacturer)
                                 <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="adress">Бренд:</label>
                             <select type="text" class="form-control" name="manufacturer_id"/>
                                 <option disabled selected>Выберите бренд</option>
-                                {{-- @foreach($brands as $brand)
+                                @foreach($brands as $brand)
                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="adress">Товар:</label>
                             <select type="text" class="form-control" name="manufacturer_id"/>
                                 <option disabled selected>Выберите товар</option>
-                                {{-- @foreach($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                @endforeach --}}
+                                @foreach($products as $product)
+                                <option value="{{$product->id}}">{{$product->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="row">

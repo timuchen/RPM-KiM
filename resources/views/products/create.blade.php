@@ -27,27 +27,26 @@
                       </ul>
                     </div><br />
                   @endif
-                    <form method="post" action="{{ route('shops.store') }}">
+                    <form method="post" action="{{ route('products.store') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="sity">Производитель:</label>
+                            <label for="manufacturer_id">Производитель:</label>
                             <select type="text" class="form-control" name="manufacturer_id"/>
                                 <option disabled selected>Выберите производителя</option>
-                                {{-- @foreach($manufacturers as $manufacturer)
+                                @foreach($manufacturers as $manufacturer)
                                 <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="adress">Бренд:</label>
-                            <select type="text" class="form-control" name="manufacturer_id"/>
-                                <option disabled selected>Выберите производителя</option>
-                                {{-- @foreach($brands as $brand)
+                            <label for="brand_id">Бренд:</label>
+                            <select type="text" class="form-control" name="brand_id"/>
+                                <option disabled selected>Выберите бренд</option>
+                                @foreach($brands as $brand)
                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
-                        
                         <div class="form-group">
                             <label for="name">Название:</label>
                             <input type="text" class="form-control" name="name"/>
@@ -56,7 +55,6 @@
                             <label for="description">Описание:</label>
                             <input type="text" class="form-control" name="description"/>
                         </div>
-                        
                         <button type="submit" class="btn btn-primary">Добавить продукт</button>
                 </form>
                 </div>

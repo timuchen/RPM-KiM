@@ -39,8 +39,8 @@
                                     <td>{{$product->id}}</td>
                                     <td>{{$product->name}} {{$product->last_name}}</td>
                                     <td>{{$product->description}}</td>
-                                    <td>{{$product->sity}}</td>
-                                    <td>{{$product->adress}}</td>
+                                    <td>{{$product->manufacturer->name}}</td>
+                                    <td>{{$product->brand->name}}</td>
                                     <td>
                                         <a href="{{ route('products.edit',$product->id)}}" class="btn btn-primary">Ред.</a>
                                     </td>

@@ -2,28 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacturer;
+use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Price;
 use Illuminate\Http\Request;
 
 class PriceController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $prices = Price::all();
         return view('prices.index', compact('prices'));
     }
+
     public function create()
     {
-        return view('prices.create');
+        $manufacturers = Manufacturer::all();
+        $brands = Brand::all();
+        $products = Product::all();
+        return view('prices.create', ['manufacturers' => $manufacturers, 'brands' => $brands, 'products' => $products]);
     }
 
     /**

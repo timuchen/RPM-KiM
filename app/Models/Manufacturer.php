@@ -16,8 +16,13 @@ class Manufacturer extends Model
     {
         return $this->hasMany(Brand::class);
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
     public function pricces()
     {
         return $this->hasMany(Price::class);
     }
+
 }

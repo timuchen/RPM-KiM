@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacturer;
+use App\Models\Brand;
 use App\Models\Product;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $products = Product::all();
@@ -29,6 +35,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
 
@@ -41,9 +48,12 @@ class ProductController extends Controller
         $product->save();
         return redirect('/products')->with('success', 'Product saved!');
     }
+    
     public function create()
     {
-        return view('products.create');
+        $manufacturers = Manufacturer::all();
+        $brands = Brand::all();
+        return view('products.create', ['manufacturers' => $manufacturers, 'brands' => $brands]);
     }
 
     /**
