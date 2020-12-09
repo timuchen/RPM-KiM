@@ -1,4 +1,8 @@
 @extends('layouts.app')
+<script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
 
 @section('content')
 <div class="container">
@@ -31,8 +35,8 @@
                         @csrf
                         <div class="form-group">
                             <label for="manufacturer_id">Производитель:</label>
-                            <select type="text" class="form-control" name="manufacturer_id"/>
-                                <option disabled selected>Выберите производителя</option>
+                            <select type="text" class="form-control" id="manufacturer_id" name="manufacturer_id"/>
+                                <option disabled selected>--Выберите производителя--</option>
                                 @foreach($manufacturers as $manufacturer)
                                 <option value="{{$manufacturer->id}}">{{$manufacturer->name}}</option>
                                 @endforeach
@@ -40,10 +44,11 @@
                         </div>
                         <div class="form-group">
                             <label for="brand_id">Бренд:</label>
-                            <select type="text" class="form-control" name="brand_id"/>
+                            <select type="text" class="form-control" id="brand_id" name="brand_id"/>
                                 <option disabled selected>Выберите бренд</option>
-                                <img id="loader" src="{{url('/images/ajax-loader-nbg.gif')}}" alt="loader">
+                                
                             </select>
+                            <img id="loader" src="{{url('/images/ajax-loader-nbg.gif')}}" alt="loader">
                         </div>
                         <div class="form-group">
                             <label for="name">Название:</label>
@@ -63,48 +68,47 @@
 
 <style>
     #loader {
-        position: absolute;
+        position: relative;
         right: 18px;
-        top: 30px;
+        top: -30px;
         width: 20px;
+        float: right;
     }
 </style>
-<script>
+<script type="text/javascript">
     $(function () {
-        var loader = $('#loader'),
-            manufacturer = $('select[name="manufacturer_id"]'),
-            brand = $('select[name="brand_id"]');
-
+        var loader = $('#loader');
+        brand = $('select[name="brand_id"]');       
+        brand.attr('disabled','disabled');
         loader.hide();
-        brand.attr('disabled','disabled')
-
-        brand.change(function(){
-            var id = $(this).val();
-            if(!id){
-                brand.attr('disabled','disabled')
+    });
+    $('#manufacturer_id').change(function(){
+    var manufacturerID = $(this).val();    
+    if(manufacturerID){
+        var loader = $('#loader');
+        brand.attr('disabled','disabled');
+        loader.show();
+        $.ajax({
+           type:"GET",
+           dataType: "json",
+           url:"{{url('products-data')}}?manufacturer_id="+manufacturerID,
+           success:function(data){               
+            if(data){
+                $("#brand_id").empty();
+                $("#brand_id").append('<option>--Выберите бренд--</option>');
+                $.each(data, function(key, value){
+                    $("#brand_id").append('<option value="'+ key +'">'+ value +'</option>');
+                });
+                brand.removeAttr('disabled');
+                loader.hide();
+            }else{
+               $("#brand_id").empty();
             }
-        })
+           }
+        });
+    } 
+   });
 
-        manufacturer.change(function() {
-            var id= $(this).val();
-            if(id){
-                loader.show();
-                brand.attr('disabled','disabled')
-
-                $.get('{{url('/product-data?manufacturer_id=')}}'+id)
-                    .success(function(data){
-                        var s='<option value="">---select--</option>';
-                        data.forEach(function(row){
-                            s +='<option value="'+row.id+'">'+row.name+'</option>'
-                        })
-                        brand.removeAttr('disabled')
-                        brand.html(s);
-                        loader.hide();
-                    })
-            }
-
-        })
-    })
 </script>
 @endsection
 

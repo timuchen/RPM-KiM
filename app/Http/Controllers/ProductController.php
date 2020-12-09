@@ -33,8 +33,11 @@ class ProductController extends Controller
 
         if($request->has('manufacturer_id')){
             $parentId = $request->get('manufacturer_id');
-            $data = Category::where('parent_id',$parentId)->get();
-            return ['success'=>true,'data'=>$data];
+            //$manufacturer = Manufacturer::where('id', $parentId)->get(['id','name']);
+            $manufacturer = Manufacturer::find($parentId);
+            $data= $manufacturer->brands;
+            
+            return ['data'=>$data];
         }
 
     }

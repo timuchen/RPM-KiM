@@ -70,7 +70,7 @@ Route::resource('manufacturers', ManufacturerController::class);
 Route::resource('brands', BrandController::class);
 
 Route::resource('products', ProductController::class);
-Route::get('/brands-data', [ProductController::class, 'data']);
+Route::get('/products-data', [ProductController::class, 'data']);
 
 Route::resource('prices', PriceController::class);
 Route::get('/brands-data', [PriceController::class, 'data']);
