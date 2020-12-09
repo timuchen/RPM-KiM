@@ -28,6 +28,17 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function data(Request $request)
+    {
+
+        if($request->has('manufacturer_id')){
+            $parentId = $request->get('manufacturer_id');
+            $data = Category::where('parent_id',$parentId)->get();
+            return ['success'=>true,'data'=>$data];
+        }
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -64,11 +64,16 @@ Route::get('/shops', function () {
 Route::get('/shops/create', function () {
     return view('/shops/create');
 });
+
 Route::resource('shops', ShopController::class);
 Route::resource('manufacturers', ManufacturerController::class);
 Route::resource('brands', BrandController::class);
+
 Route::resource('products', ProductController::class);
+Route::get('/brands-data', [ProductController::class, 'data']);
+
 Route::resource('prices', PriceController::class);
+Route::get('/brands-data', [PriceController::class, 'data']);
 
 Auth::routes();
 

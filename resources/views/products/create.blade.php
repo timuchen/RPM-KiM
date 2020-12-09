@@ -42,9 +42,7 @@
                             <label for="brand_id">Бренд:</label>
                             <select type="text" class="form-control" name="brand_id"/>
                                 <option disabled selected>Выберите бренд</option>
-                                @foreach($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->name}}</option>
-                                @endforeach
+                                <img id="loader" src="{{url('/images/ajax-loader-nbg.gif')}}" alt="loader">
                             </select>
                         </div>
                         <div class="form-group">
@@ -62,6 +60,52 @@
         </div>
     </div>
 </div>
+
+<style>
+    #loader {
+        position: absolute;
+        right: 18px;
+        top: 30px;
+        width: 20px;
+    }
+</style>
+<script>
+    $(function () {
+        var loader = $('#loader'),
+            manufacturer = $('select[name="manufacturer_id"]'),
+            brand = $('select[name="brand_id"]');
+
+        loader.hide();
+        brand.attr('disabled','disabled')
+
+        brand.change(function(){
+            var id = $(this).val();
+            if(!id){
+                brand.attr('disabled','disabled')
+            }
+        })
+
+        manufacturer.change(function() {
+            var id= $(this).val();
+            if(id){
+                loader.show();
+                brand.attr('disabled','disabled')
+
+                $.get('{{url('/product-data?manufacturer_id=')}}'+id)
+                    .success(function(data){
+                        var s='<option value="">---select--</option>';
+                        data.forEach(function(row){
+                            s +='<option value="'+row.id+'">'+row.name+'</option>'
+                        })
+                        brand.removeAttr('disabled')
+                        brand.html(s);
+                        loader.hide();
+                    })
+            }
+
+        })
+    })
+</script>
 @endsection
 
 
