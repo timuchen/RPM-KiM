@@ -105,6 +105,9 @@
                $("#brand_id").empty();
             }
            }
+           error: function (req, status, err) {
+                console.log('Something went wrong', status, err);
+            }
         });
     } 
    });
