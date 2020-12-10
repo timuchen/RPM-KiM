@@ -17,4 +17,9 @@ class Shop extends Model
     {
         return $this->hasMany(Price::class);
     }
+
+    public function shopMonitorings()
+    {
+        return $this->hasMany(ShopMonitoring::class);
+    }
 }

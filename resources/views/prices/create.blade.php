@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <h2 >Добавить продукт</h2>
+                    <h2 >Добавить ценник</h2>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

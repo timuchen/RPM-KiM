@@ -18,18 +18,27 @@ class Price extends Model
         'product_id', 
         'user_id',
     ];
+
+    public function shopMonitoring()
+    {
+      return $this->belongsTo(ShopMonitoring::class);
+    }
+
     public function shop()
     {
       return $this->belongsTo(Shop::class);
     }
+
     public function manufacturer()
     {
       return $this->belongsTo(Manufacturer::class);
     }
+
     public function brand()
     {
       return $this->belongsTo(Brand::class);
     }
+    
     public function product()
     {
       return $this->belongsTo(Product::class);

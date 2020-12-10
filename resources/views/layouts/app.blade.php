@@ -33,19 +33,17 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        
+                    <ul class="navbar-nav mr-auto">    
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Мониторинг цен
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="/prices/create">Вход в магазин</a>
+                              <a class="dropdown-item" href="/shopmonitorings/create">Вход в магазин</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="/prices">Списки входов</a>
+                              <a class="dropdown-item" href="/shopmonitorings">Списки входов</a>
                             </div>
                           </li>
                           <li class="nav-item dropdown">
@@ -89,7 +87,6 @@
                             </div>
                           </li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -128,7 +125,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

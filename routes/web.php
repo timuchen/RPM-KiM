@@ -7,6 +7,8 @@ use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ShopMonitoringController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +67,13 @@ Route::get('/shops/create', function () {
     return view('/shops/create');
 });
 
+Route::get('/shopmonitorings', function () {
+    return view('/shopmonitorings/index');
+});
+Route::get('/shopmonitorings/create', function () {
+    return view('/shopmonitorings/create');
+});
+
 Route::resource('shops', ShopController::class);
 Route::resource('manufacturers', ManufacturerController::class);
 Route::resource('brands', BrandController::class);
@@ -74,6 +83,8 @@ Route::get('/products-data', [ProductController::class, 'data']);
 
 Route::resource('prices', PriceController::class);
 Route::get('/brands-data', [PriceController::class, 'data']);
+
+Route::resource('shopmonitorings', ShopMonitoringController::class);
 
 Auth::routes();
 
