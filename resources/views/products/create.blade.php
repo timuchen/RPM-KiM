@@ -96,10 +96,8 @@
             if(data){
                 $("#brand_id").empty();
                 $("#brand_id").append('<option>--Выберите бренд--</option>');
-                $.each(data, function(key, value){
-                    $.each(value, function(first, second){
-                        $("#brand_id").append('<option value="'+ second.id +'">'+ second.name +'</option>');
-                    });
+                $.each(data.data, function(key, value){
+                    $("#brand_id").append('<option value="'+ value.id +'">'+ value.name +'</option>');
                 });
                 brand.removeAttr('disabled');
                 loader.hide();
@@ -110,7 +108,6 @@
         });
     } 
    });
-
 </script>
 @endsection
 
