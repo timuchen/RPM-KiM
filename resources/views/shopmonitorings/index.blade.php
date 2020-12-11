@@ -31,7 +31,7 @@
                                 @foreach($shopmonitorings ?? '' as $shopmonitoring)
                                 <tr>
                                     <td>{{$shopmonitoring->id}}</td>
-                                    <td>{{$shopmonitoring->description}}</td>
+                                    <td>{{$shopmonitoring->shop->name}}</td>
                                     <td>{{$shopmonitoring->created_at}}</td>
                                     <td>0</td>
 

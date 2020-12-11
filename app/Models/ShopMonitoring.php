@@ -13,9 +13,10 @@ class ShopMonitoring extends Model
         'shop_id',
         'user_id',
     ];
+    
     public function shop() 
     {
-        return $this->bylongsTo(Shop::class);
+        return $this->belongsTo(Shop::class);
     }
 
     public function Price()
