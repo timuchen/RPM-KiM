@@ -6,6 +6,7 @@ use App\Models\Manufacturer;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Price;
+use App\Models\ShopMonitoring;
 use Illuminate\Http\Request;
 
 class PriceController extends Controller
@@ -33,6 +34,7 @@ class PriceController extends Controller
         $manufacturers = Manufacturer::all();
         $brands = Brand::all();
         $products = Product::all();
+        $shopmonitoring = ShopMonitoring::all();
         return view('prices.create', ['manufacturers' => $manufacturers, 'brands' => $brands, 'products' => $products]);
     }
 

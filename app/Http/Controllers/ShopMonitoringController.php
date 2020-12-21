@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\ShopMonitoring;
+use App\Models\Manufacturer;
+use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Price;
 use Illuminate\Http\Request;
 
 class ShopMonitoringController extends Controller
@@ -22,7 +26,7 @@ class ShopMonitoringController extends Controller
         $shopmonitorings = ShopMonitoring::all();
         return view('shopmonitorings.index', compact('shopmonitorings'));
     }
-
+    
 
     /**
      * Store a newly created resource in storage.
@@ -30,22 +34,24 @@ class ShopMonitoringController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $shopmonitoring = new ShopMonitoring([
             'shop_id' => $request->get('shop_id'),
             'user_id' => $request->get('user_id'),
-
         ]);
         $shopmonitoring->save();
-        return redirect('/shopmonitorings')->with('success', 'Shop Monitoring saved!');
+        $id = $shopmonitoring->id;
+        return redirect('/shopmonitorings/' . $id . '/edit')->with('success', 'Shop Monitoring saved!');
     }
+
     public function create()
     {
         $shops = Shop::all();
+        
         return view('shopmonitorings.create', ['shops' => $shops]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -53,11 +59,14 @@ class ShopMonitoringController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+    
     public function edit($id)
     {
+        $manufacturers = Manufacturer::all();
+        $brands = Brand::all();
+        $products = Product::all();
         $shopmonitoring = ShopMonitoring::find($id);
-        return view('shopmonitorings.edit', compact('shopmonitoring'));
+        return view('shopmonitorings.edit', ['shopmonitoring'=>$shopmonitoring, 'manufacturers' => $manufacturers, 'brands' => $brands, 'products' => $products]);
     }
 
     /**
@@ -92,8 +101,13 @@ class ShopMonitoringController extends Controller
     {
       $shopmonitoring = ShopMonitoring::find($id);
       $shopmonitoring->delete();
+      return redirect('/shopmonitorings')->with('success', 'Shop Monitoring deleted!');
+    }
 
-
-      return response()->json('ShopMonitoring Deleted Successfully.');
+    public function pricelist($id)
+    {
+        $shopmonitoring = Shopmonitoring::find($id);
+        $prices = Price::all();
+        return view('prices.index', compact('prices'));
     }
 }

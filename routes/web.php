@@ -20,17 +20,12 @@ use App\Http\Controllers\ShopMonitoringController;
 |
 */
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/dev', function(){
     return view('dev-report');
 });
-
-
 
 Route::get('/brands/create', function () {
     return view('/brands/create');
@@ -85,8 +80,6 @@ Route::resource('prices', PriceController::class);
 Route::get('/brands-data', [PriceController::class, 'data']);
 
 Route::resource('shopmonitorings', ShopMonitoringController::class);
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
