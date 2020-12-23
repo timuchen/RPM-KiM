@@ -24,7 +24,7 @@
                       </ul>
                     </div><br />
                   @endif
-                    <form method="post" action="{{ route('shopmonitorings.store') }}">
+                    <form method="post" action="{{ route('shopmonitorings.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="shop_id">Торговые точки:</label>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Добавить фото витрины</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
                         </div>
                         <div class="form-group">
                         <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}"/>

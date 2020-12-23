@@ -47,11 +47,17 @@ class PriceController extends Controller
     public function store(Request $request)
     {
         $price = new Price([
-          'name' => $request->get('name'),
-          'description' => $request->get('description')
+            'name' => $request->get('name'),
+            'shopmonitoring_id' => $request->get('shopmonitoring_id'),
+            'shop_id' => $request->get('shop_id'),
+            'manufacturer_id' => $request->get('manufacturer_id'),
+            'brand_id' => $request->get('brand_id'),
+            'product_id' => $request->get('product_id'),
+            'user_id' => $request->get('user_id'),
+            'price' => $request->get('price'),
+            'discount' => $request->get('discount'),
         ]);
         $price->save();
-
 
         return response()->json('Price Added Successfully.');
     }

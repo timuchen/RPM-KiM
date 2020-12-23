@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     {{ __('Мониторинг торговых точек') }}
@@ -21,6 +21,7 @@
                             <thead>
                                 <tr>
                                   <td>ID</td>
+                                  <td>Изображение</td>
                                   <td>Название ТТ</td>
                                   <td>Дата</td>
                                   <td>Кол-во товаров</td>
@@ -31,6 +32,7 @@
                                 @foreach($shopmonitorings ?? '' as $shopmonitoring)
                                 <tr>
                                     <td>{{$shopmonitoring->id}}</td>
+                                    <td><img src="{{$shopmonitoring->image}}" width="60" height="auto" class="photo-shopmonitoring"/></td>
                                     <td>{{$shopmonitoring->shop->name}}</td>
                                     <td>{{$shopmonitoring->created_at}}</td>
                                     <td>0 из 65</td>
@@ -59,3 +61,10 @@
     </div>
 </div>
 @endsection
+
+<style>
+    .photo-shopmonitoring{
+        max-height: 40px;
+        border-radius: 10px;
+    }
+</style>

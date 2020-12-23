@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Price;
 use Illuminate\Http\Request;
+use DateTime;
 
 class ShopMonitoringController extends Controller
 {
@@ -37,10 +38,27 @@ class ShopMonitoringController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'shop_id' => 'required',
+        ]);
+
+        if ($request->hasFile('image')){
+            $datePrefix = new DateTime();
+            $datePrefix = $datePrefix->format('y/m/d/');
+
+            $file = $request->file('image');
+            $upload_folder = '/public/uploads/' . $datePrefix;
+            $fileName = $file->getClientOriginalName();
+            $file->move(public_path().$upload_folder, $fileName);
+        }
+
         $shopmonitoring = new ShopMonitoring([
             'shop_id' => $request->get('shop_id'),
             'user_id' => $request->get('user_id'),
+            'image' => $upload_folder . $fileName,
         ]);
+
         $shopmonitoring->save();
         $id = $shopmonitoring->id;
         return redirect('/shopmonitorings/' . $id . '/edit')->with('success', 'Shop Monitoring saved!');
@@ -49,7 +67,6 @@ class ShopMonitoringController extends Controller
     public function create()
     {
         $shops = Shop::all();
-        
         return view('shopmonitorings.create', ['shops' => $shops]);
     }
 
@@ -66,7 +83,12 @@ class ShopMonitoringController extends Controller
         $brands = Brand::all();
         $products = Product::all();
         $shopmonitoring = ShopMonitoring::find($id);
-        return view('shopmonitorings.edit', ['shopmonitoring'=>$shopmonitoring, 'manufacturers' => $manufacturers, 'brands' => $brands, 'products' => $products]);
+        return view('shopmonitorings.edit', [
+            'shopmonitoring'=>$shopmonitoring, 
+            'manufacturers' => $manufacturers, 
+            'brands' => $brands, 
+            'products' => $products,
+         ]);
     }
 
     /**
@@ -85,8 +107,7 @@ class ShopMonitoringController extends Controller
         $shopmonitoring = ShopMonitoring::find($id);
         $shopmonitoring->name = $request->get('name');
         $shopmonitoring->description = $request->get('description');
-        $shopmonitoring->sity = $request->get('sity');
-        $shopmonitoring->adress = $request->get('adress');
+        //file
         $shopmonitoring->save();
         return redirect('/shopmonitorings')->with('success', 'ShopMonitoring updated!');
     }
@@ -97,6 +118,7 @@ class ShopMonitoringController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
       $shopmonitoring = ShopMonitoring::find($id);

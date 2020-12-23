@@ -17,7 +17,7 @@
                             <button style="position:absolute;right:10px;top:10px;" type="" class="btn btn-outline-danger btn-sm">Завершить сессию</button>
                         </a>
                     </div>
-                    
+
                     
                 </div>
 
@@ -43,7 +43,7 @@
                             <br />
                             @endif
 
-                            <form method="post" action="{{ route('shops.store') }}">
+                            <form method="post" action="{{ route('prices.store') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="sity">Производитель:</label>
@@ -75,15 +75,27 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="description">Цена:</label>
-                                       <input type="text" class="form-control" name="description"/>
+                                       <input type="text" class="form-control" name="price"/>
                                    </div>
                                 </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="description">Цена со скидкой:</label>
-                                            <input type="text" class="form-control" name="description"/>
+                                            <input type="text" class="form-control" name="discount"/>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="name" value="{{$shopmonitoring->shop->name}}"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="shop_id" value="{{$shopmonitoring->shop->id}}"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="shopmonitoring_id" value="{{$shopmonitoring->id}}"/>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Добавить продукт</button> | 
                                 Добавляйте сразу несколько цен товаров, в этой форме.

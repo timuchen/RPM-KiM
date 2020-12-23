@@ -17,7 +17,7 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->foreignId('manufacturer_id');
         });
     }

@@ -12,6 +12,7 @@ class ShopMonitoring extends Model
     protected $fillable = [
         'shop_id',
         'user_id',
+        'image',
     ];
     
     public function shop() 

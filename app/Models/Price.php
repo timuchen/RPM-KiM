@@ -11,12 +11,14 @@ class Price extends Model
 
     protected $fillable = [
         'name', 
-        'description', 
         'shop_id', 
         'manufacturer_id', 
         'brand_id', 
         'product_id', 
         'user_id',
+        'price',
+        'discount',
+        'shopmonitoring_id'
     ];
 
     public function shopMonitoring()
