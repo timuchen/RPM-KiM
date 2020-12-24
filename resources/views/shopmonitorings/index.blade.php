@@ -37,8 +37,8 @@
                                     <td>{{$shopmonitoring->created_at}}</td>
                                     <td>0 из 65</td>
                                     <td>
-                                        <a href="{{ route('shopmonitorings.edit',$shopmonitoring->id)}}" class="btn btn-sm btn-primary">++Ценник</a>
-                                        <a href="{{ route('shopmonitorings.edit',$shopmonitoring->id)}}" class="btn btn-sm btn-primary">Список цен</a>
+                                        <a href="{{ route('shopmonitorings.edit', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">++Ценник</a>
+                                        <a href="{{ route('prices.show', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">Список цен</a>
                                         
                                     <td>
                                         <form action="{{ route('shopmonitorings.destroy', $shopmonitoring->id)}}" method="post">

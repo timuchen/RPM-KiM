@@ -20,8 +20,8 @@ class ShopMonitoring extends Model
         return $this->belongsTo(Shop::class);
     }
 
-    public function Price()
+    public function prices()
     {
-        return $this->hasMany(Price::class);
+        return $this->hasMany(Price::class, 'shopmonitoring_id');
     }
 }

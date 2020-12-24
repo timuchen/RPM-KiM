@@ -21,7 +21,7 @@ class Price extends Model
         'shopmonitoring_id'
     ];
 
-    public function shopMonitoring()
+    public function shopmonitoring()
     {
       return $this->belongsTo(ShopMonitoring::class);
     }

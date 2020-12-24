@@ -101,13 +101,10 @@ class ShopMonitoringController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required',
-        ]);
+
         $shopmonitoring = ShopMonitoring::find($id);
         $shopmonitoring->name = $request->get('name');
         $shopmonitoring->description = $request->get('description');
-        //file
         $shopmonitoring->save();
         return redirect('/shopmonitorings')->with('success', 'ShopMonitoring updated!');
     }
@@ -126,10 +123,11 @@ class ShopMonitoringController extends Controller
       return redirect('/shopmonitorings')->with('success', 'Shop Monitoring deleted!');
     }
 
-    public function pricelist($id)
+    public function show($id)
     {
         $shopmonitoring = Shopmonitoring::find($id);
         $prices = Price::all();
         return view('prices.index', compact('prices'));
     }
+
 }

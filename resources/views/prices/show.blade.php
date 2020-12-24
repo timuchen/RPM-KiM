@@ -7,8 +7,11 @@
             <div class="card">
                 <div class="card-header">
 
-                    {{ __('Мониторинг цен') }}
-                    <a href="/prices/create" style="float: right;"class="btn btn-primary text-right">Добавить...</a>
+                    {{ __('Мониторинг цен') }} - магазин {{$shopmonitoring->shop->name}}, 
+                    {{$shopmonitoring->shop->sity}},  
+                    {{$shopmonitoring->shop->adress}} 
+                    <span class="badge bg-warning text-dark">ID:{{$shopmonitoring->id}}</span>
+                    <a href="/shopmonitorings/{{$shopmonitoring->id}}/edit" style="float: right;"class="btn btn-primary text-right">Добавить...</a>
 
                 </div>
 
@@ -21,7 +24,8 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2>Отчёты</h2>
+                            <h2>Список мониторинга</h2>
+                            
                           <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -29,18 +33,21 @@
                                   <td>Название</td>
                                   <td>Производитель</td>
                                   <td>Бренд</td>
+                                  <td>Продукт</td>
                                   <td>Цена</td>
                                   <td>Цена со скидкой</td>
                                   <td colspan = 2>Действия</td>
                                 </tr>
                             </thead>
                             <tbody>
+                                
                             @foreach($prices as $price)
                                 <tr>
                                     <td>{{$price->id}}</td>
-                                    <td>{{$price->name}}</td>
+                                    <td>{{$price->name}} {{$price->last_name}}</td>
                                     <td>{{$price->manufacturer_id}}</td>
                                     <td>{{$price->brand_id}}</td>
+                                    <td>{{$price->product_id}}</td>
                                     <td>{{$price->price}}</td>
                                     <td>{{$price->discount}}</td>
                                     <td>

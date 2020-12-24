@@ -46,6 +46,14 @@ class PriceController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'manufacturer_id'=>'required',
+            'brand_id' => 'required',
+            'product_id' => 'required',
+            'price' => 'numeric|required',
+            'discount' => 'numeric|required',
+        ]);
+
         $price = new Price([
             'name' => $request->get('name'),
             'shopmonitoring_id' => $request->get('shopmonitoring_id'),
@@ -58,8 +66,8 @@ class PriceController extends Controller
             'discount' => $request->get('discount'),
         ]);
         $price->save();
-
-        return response()->json('Price Added Successfully.');
+        $id = $request->get('shopmonitoring_id');
+        return redirect("/shopmonitorings/$id/edit")->with('success', 'ShopMonitoring updated!');
     }
 
 
@@ -108,5 +116,12 @@ class PriceController extends Controller
 
 
       return response()->json('Price Deleted Successfully.');
+    }
+
+    public function show($id)
+    {
+        $shopmonitoring = ShopMonitoring::find($id);
+        $prices = Shopmonitoring::find($id)->prices;
+        return view('prices.show', ['prices'=>$prices, 'shopmonitoring'=> $shopmonitoring]);
     }
 }

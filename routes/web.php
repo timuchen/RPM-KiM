@@ -80,6 +80,7 @@ Route::resource('prices', PriceController::class);
 Route::get('/brands-data', [PriceController::class, 'data']);
 
 Route::resource('shopmonitorings', ShopMonitoringController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
