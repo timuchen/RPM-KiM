@@ -50,8 +50,8 @@ class PriceController extends Controller
             'manufacturer_id'=>'required',
             'brand_id' => 'required',
             'product_id' => 'required',
-            'price' => 'numeric|required',
-            'discount' => 'numeric|required',
+            'price' => 'numeric',
+            'discount' => 'numeric',
         ]);
 
         $price = new Price([

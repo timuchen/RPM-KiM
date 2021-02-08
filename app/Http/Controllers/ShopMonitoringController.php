@@ -24,18 +24,19 @@ class ShopMonitoringController extends Controller
      */
     public function index()
     {
+        $colProducts = Product::all();
+        $colProducts = $colProducts->count();
         $shopmonitorings = ShopMonitoring::all();
-        return view('shopmonitorings.index', compact('shopmonitorings'));
+        return view('shopmonitorings.index', ['shopmonitorings'=>$shopmonitorings, 'colproducts'=>$colProducts,]);
     }
     
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
+    
     public function store(Request $request)
     {
         $this->validate($request, [

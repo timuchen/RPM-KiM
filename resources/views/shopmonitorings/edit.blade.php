@@ -31,7 +31,8 @@
                     <div class="row">
                         <div class="col-sm-12 offset-sm-12">
                             <h2>Добавление ценника</h2>
-
+                            Уже добавлено: 0 | <a href="/prices/{{$shopmonitoring->id}}"><span>Список цен для текущей сессии</span></a>
+                            <br><br>
                             @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -98,7 +99,8 @@
                                     <input type="hidden" class="form-control" name="shopmonitoring_id" value="{{$shopmonitoring->id}}"/>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Добавить продукт</button> | 
-                                Добавляйте сразу несколько цен товаров, в этой форме.
+                                Добавляйте сразу несколько цен товаров, в этой форме. <br>
+                                
                             </form>
                
                     </div>

@@ -29,13 +29,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($shopmonitorings ?? '' as $shopmonitoring)
+                                @foreach($shopmonitorings as $shopmonitoring)
                                 <tr>
                                     <td>{{$shopmonitoring->id}}</td>
                                     <td><img src="{{$shopmonitoring->image}}" width="60" height="auto" class="photo-shopmonitoring"/></td>
                                     <td>{{$shopmonitoring->shop->name}}</td>
                                     <td>{{$shopmonitoring->created_at}}</td>
-                                    <td>0 из 65</td>
+                                    <td>
+                                    0
+                                    из {{$colproducts}}</td>
                                     <td>
                                         <a href="{{ route('shopmonitorings.edit', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">++Ценник</a>
                                         <a href="{{ route('prices.show', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">Список цен</a>
