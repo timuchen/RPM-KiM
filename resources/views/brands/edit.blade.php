@@ -54,7 +54,7 @@
                                     @endforeach
                                 </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Обновить магазин</button>
+                                <button type="submit" class="btn btn-primary">Обновить бренд</button>
                             </form>
                         </div>
                     </div>

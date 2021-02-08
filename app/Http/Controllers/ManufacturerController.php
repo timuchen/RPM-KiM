@@ -38,7 +38,9 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
         $manufacturer = new Manufacturer([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
@@ -97,6 +99,6 @@ class ManufacturerController extends Controller
       $manufacturer->delete();
 
 
-      return response()->json('Manufacturer Deleted Successfully.');
+      return redirect('/manufacturers')->with('success', 'Manufacturer updated!');
     }
 }

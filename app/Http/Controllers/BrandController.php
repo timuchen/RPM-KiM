@@ -35,6 +35,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'manufacturer_id' => 'required',
+            'name' => 'required',
+        ]);
         $brand = new Brand([
             'name' => $request->get('name'),
             'description' => $request->get('description'),

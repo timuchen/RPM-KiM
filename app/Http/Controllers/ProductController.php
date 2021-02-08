@@ -59,6 +59,11 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'manufacturer_id' => 'required',
+            'brand_id' => 'required',
+        ]);
 
         $product = new Product([
             'name' => $request->get('name'),
@@ -123,6 +128,6 @@ class ProductController extends Controller
       $product->delete();
 
 
-      return response()->json('Product Deleted Successfully.');
+      return redirect('/products')->with('success', 'Product updated!');
     }
 }

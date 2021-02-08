@@ -29,9 +29,15 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-
+        
+        $this->validate($request, [
+            'name' => 'required',
+            'sity' => 'required',
+            'adress' => 'required',
+        ]);
         $shop = new Shop([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
@@ -93,6 +99,6 @@ class ShopController extends Controller
       $shop->delete();
 
 
-      return response()->json('Shop Deleted Successfully.');
+      return redirect('/shops')->with('success', 'Shop saved!');
     }
 }
