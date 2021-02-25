@@ -92,7 +92,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        $manufacturers = Manufacturer::all();
+        $brands = Brand::all();
+        
+        return view('products.edit', ['manufacturers' => $manufacturers, 'brands' => $brands, 'product'=>$product,]);
     }
 
     /**

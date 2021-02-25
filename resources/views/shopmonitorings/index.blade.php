@@ -37,19 +37,19 @@
                                     <td>{{$shopmonitoring->shop->name}}</td>
                                     <td>{{$shopmonitoring->created_at}}</td>
                                     <td>
+
                                     <?php $i=0; 
                                     foreach($colprices as $colprice)
-                                    
                                         if ($colprice->shopmonitoring_id == $shopmonitoring->id){
                                             ++$i;
-                                        }
+                                        }  
                                     ?>
-
                                     <?= $i ?> из {{$colproducts}}</td>
+
                                     <td>
                                         <a href="{{ route('shopmonitorings.edit', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">++Ценник</a>
                                         <a href="{{ route('prices.show', $shopmonitoring->id)}}" class="btn btn-sm btn-primary">Список цен</a>
-                                        
+                                   
                                     <td>
                                         <form action="{{ route('shopmonitorings.destroy', $shopmonitoring->id)}}" method="post">
                                           @csrf
