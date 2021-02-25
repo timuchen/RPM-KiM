@@ -26,8 +26,10 @@ class ShopMonitoringController extends Controller
     {
         $colProducts = Product::all();
         $colProducts = $colProducts->count();
+        $colPrices = Price::all();
+        //$colPrices = $colPrices->count();
         $shopmonitorings = ShopMonitoring::all();
-        return view('shopmonitorings.index', ['shopmonitorings'=>$shopmonitorings, 'colproducts'=>$colProducts,]);
+        return view('shopmonitorings.index', ['shopmonitorings'=>$shopmonitorings, 'colproducts'=>$colProducts, 'colprices'=>$colPrices,]);
     }
     
     /**
@@ -102,7 +104,6 @@ class ShopMonitoringController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $shopmonitoring = ShopMonitoring::find($id);
         $shopmonitoring->name = $request->get('name');
         $shopmonitoring->description = $request->get('description');
